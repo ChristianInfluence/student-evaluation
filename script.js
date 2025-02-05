@@ -10,30 +10,37 @@ function fetchStudents() {
         if (!response.ok) {
             throw new Error("Network response was not ok: " + response.statusText);
         }
-        return response.json();
+        return response.text(); // Return as text to log it
     })
-    .then(studentNames => {
-        console.log("Fetched students:", studentNames); // Debugging
+    .then(responseText => {
+        console.log("Response text:", responseText); // Log the text response
+        try {
+            const studentNames = JSON.parse(responseText); // Attempt to parse JSON
+            console.log("Fetched students:", studentNames); // Debugging
 
-        let select = document.getElementById("studentSelect");
-        select.innerHTML = ""; // Clear old options
+            let select = document.getElementById("studentSelect");
+            select.innerHTML = ""; // Clear old options
 
-        if (studentNames.length === 0) {
-            let option = document.createElement("option");
-            option.textContent = "No students available";
-            option.disabled = true;
-            option.selected = true;
-            select.appendChild(option);
-        } else {
-            studentNames.forEach(name => {
+            if (studentNames.length === 0) {
                 let option = document.createElement("option");
-                option.value = name;
-                option.textContent = name;
+                option.textContent = "No students available";
+                option.disabled = true;
+                option.selected = true;
                 select.appendChild(option);
-            });
-        }
+            } else {
+                studentNames.forEach(name => {
+                    let option = document.createElement("option");
+                    option.value = name;
+                    option.textContent = name;
+                    select.appendChild(option);
+                });
+            }
 
-        document.getElementById("content").style.display = "block"; // Show the form
+            document.getElementById("content").style.display = "block"; // Show the form
+        } catch (error) {
+            console.error("Error parsing JSON:", error);
+            alert("Error parsing student names: " + error.message);
+        }
     })
     .catch(error => {
         console.error("Error fetching student names:", error);
