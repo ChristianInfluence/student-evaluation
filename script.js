@@ -1,4 +1,3 @@
-// URLs for Google Apps Script Web Apps
 const STUDENT_FETCH_URL = "https://script.google.com/macros/s/AKfycbwmiR3zdSCKEwLzIB4XkmOTljYJwBTdWzIQY8Gh7BkKPKwSGbFidyMsX1rMr3Dr9ig1/exec";
 const SUBMIT_DATA_URL = "https://script.google.com/macros/s/AKfycbyheYAKhrojL4X_9PZlFMgjY_d95GWVGvZihABwgohuyD1JJzHD_hOzuxbmuAqL0C4h-g/exec"; 
 
