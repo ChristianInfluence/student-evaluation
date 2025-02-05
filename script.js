@@ -6,6 +6,7 @@ const SUBMIT_DATA_URL = "https://script.google.com/macros/s/AKfycbyheYAKhrojL4X_
 function fetchStudents() {
     fetch(CORS_PROXY + STUDENT_FETCH_URL)
     .then(response => {
+        console.log("Response from fetch:", response); // Add extra debugging information
         if (!response.ok) {
             throw new Error("Network response was not ok: " + response.statusText);
         }
@@ -34,7 +35,10 @@ function fetchStudents() {
 
         document.getElementById("content").style.display = "block"; // Show the form
     })
-    .catch(error => console.error("Error fetching student names:", error));
+    .catch(error => {
+        console.error("Error fetching student names:", error);
+        alert("Error fetching student names: " + error.message);
+    });
 }
 
 // Submit evaluation data to "Probation Log 2025" sheet
