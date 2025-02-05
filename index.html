@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Evaluation</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="1027149487828-q084n731q54h59f54l2f098999079q6l.apps.googleusercontent.com">
+</head>
+<body>
+
+    <h2>Teacher Student Evaluation</h2>
+
+    <!-- Google Sign-In -->
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+
+    <!-- Main Form -->
+    <div id="content" style="display: none;">
+        <h3>Select Student</h3>
+        <select id="studentSelect"></select>
+
+        <h3>Evaluation Criteria (1-10)</h3>
+
+        <label>Academics:</label>
+        <input type="range" id="academics" min="1" max="10" value="5"><br>
+
+        <label>Integration:</label>
+        <input type="range" id="integration" min="1" max="10" value="5"><br>
+
+        <label>Behavior:</label>
+        <input type="range" id="behavior" min="1" max="10" value="5"><br>
+
+        <label>Attendance:</label>
+        <input type="range" id="attendance" min="1" max="10" value="5"><br>
+
+        <h3>Feedback</h3>
+        <textarea id="feedback" placeholder="Enter feedback here..."></textarea><br>
+
+        <button id="submitButton">Submit</button>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
