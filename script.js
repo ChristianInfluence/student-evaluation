@@ -1,9 +1,10 @@
+const CORS_PROXY = "https://comments.javajireh.org/";
 const STUDENT_FETCH_URL = "https://script.google.com/macros/s/AKfycbwmiR3zdSCKEwLzIB4XkmOTljYJwBTdWzIQY8Gh7BkKPKwSGbFidyMsX1rMr3Dr9ig1/exec";
 const SUBMIT_DATA_URL = "https://script.google.com/macros/s/AKfycbyheYAKhrojL4X_9PZlFMgjY_d95GWVGvZihABwgohuyD1JJzHD_hOzuxbmuAqL0C4h-g/exec"; 
 
 // Fetch students from "New Student Probation" sheet
 function fetchStudents() {
-    fetch(STUDENT_FETCH_URL)
+    fetch(CORS_PROXY + STUDENT_FETCH_URL)
     .then(response => {
         if (!response.ok) {
             throw new Error("Network response was not ok: " + response.statusText);
@@ -59,7 +60,7 @@ function submitEvaluation() {
         feedback: feedback
     };
 
-    fetch(SUBMIT_DATA_URL, {
+    fetch(CORS_PROXY + SUBMIT_DATA_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
