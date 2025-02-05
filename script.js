@@ -1,54 +1,82 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const studentDropdown = document.getElementById("studentSelect");
-    const submitButton = document.getElementById("submitButton");
+// URLs for Google Apps Script Web Apps
+const STUDENT_FETCH_URL = "https://script.google.com/macros/s/AKfycbwmiR3zdSCKEwLzIB4XkmOTljYJwBTdWzIQY8Gh7BkKPKwSGbFidyMsX1rMr3Dr9ig1/exec";
+const SUBMIT_DATA_URL = "https://script.google.com/macros/s/AKfycbyheYAKhrojL4X_9PZlFMgjY_d95GWVGvZihABwgohuyD1JJzHD_hOzuxbmuAqL0C4h-g/exec"; 
 
-    // Fetch student names from the "New Student Probation" web app (No authentication)
-    fetch("https://script.google.com/macros/s/AKfycbxI_zFyRRcP4Z-QBhDiyOLMRe0fs8ZYJtjErGY8MJ0b0Tk24uOXPogGJvKJRGBkWw/exec")
-        .then(response => response.json())
-        .then(studentNames => {
+// Fetch students from "New Student Probation" sheet
+function fetchStudents() {
+    fetch(STUDENT_FETCH_URL)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok: " + response.statusText);
+        }
+        return response.json();
+    })
+    .then(studentNames => {
+        console.log("Fetched students:", studentNames); // Debugging
+
+        let select = document.getElementById("studentSelect");
+        select.innerHTML = ""; // Clear old options
+
+        if (studentNames.length === 0) {
+            let option = document.createElement("option");
+            option.textContent = "No students available";
+            option.disabled = true;
+            option.selected = true;
+            select.appendChild(option);
+        } else {
             studentNames.forEach(name => {
                 let option = document.createElement("option");
                 option.value = name;
                 option.textContent = name;
-                studentDropdown.appendChild(option);
+                select.appendChild(option);
             });
-        })
-        .catch(error => console.error("Error fetching student names:", error));
-
-    // Submit evaluation data to "Probation Log 2025" web app
-    submitButton.addEventListener("click", function () {
-        const selectedStudent = studentDropdown.value;
-        const academics = document.getElementById("academics").value;
-        const integration = document.getElementById("integration").value;
-        const behavior = document.getElementById("behavior").value;
-        const attendance = document.getElementById("attendance").value;
-        const feedback = document.getElementById("feedback").value;
-
-        // Validate input
-        if (!selectedStudent || !academics || !integration || !behavior || !attendance || !feedback) {
-            alert("Please complete all fields before submitting.");
-            return;
         }
 
-        // Send data to "Probation Log 2025" Google Sheet
-        fetch("https://script.google.com/macros/s/AKfycbyheYAKhrojL4X_9PZlFMgjY_d95GWVGvZihABwgohuyD1JJzHD_hOzuxbmuAqL0C4h-g/exec", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                student: selectedStudent,
-                academics: academics,
-                integration: integration,
-                behavior: behavior,
-                attendance: attendance,
-                feedback: feedback
-            })
-        })
-        .then(response => response.text())
-        .then(result => {
-            alert(result);
-        })
-        .catch(error => console.error("Error submitting evaluation:", error));
-    });
-});
+        document.getElementById("content").style.display = "block"; // Show the form
+    })
+    .catch(error => console.error("Error fetching student names:", error));
+}
+
+// Submit evaluation data to "Probation Log 2025" sheet
+function submitEvaluation() {
+    let student = document.getElementById("studentSelect").value;
+    let academics = document.getElementById("academics").value;
+    let integration = document.getElementById("integration").value;
+    let behavior = document.getElementById("behavior").value;
+    let attendance = document.getElementById("attendance").value;
+    let feedback = document.getElementById("feedback").value;
+
+    if (!student || !academics || !integration || !behavior || !attendance || !feedback) {
+        alert("All fields are required!");
+        return;
+    }
+
+    let data = {
+        student: student,
+        academics: academics,
+        integration: integration,
+        behavior: behavior,
+        attendance: attendance,
+        feedback: feedback
+    };
+
+    fetch(SUBMIT_DATA_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log("Submission response:", result);
+        alert(result);
+    })
+    .catch(error => console.error("Error submitting evaluation:", error));
+}
+
+// Run fetchStudents() when the page loads
+window.onload = fetchStudents;
+
+// Attach event listener to submit button
+document.getElementById("submitButton").addEventListener("click", submitEvaluation);
