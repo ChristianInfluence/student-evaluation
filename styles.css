@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     text-align: center;
     padding: 20px;
     background-color: #f5f5f5;
@@ -13,6 +15,8 @@ body {
 
 h2, h3 {
     color: #333;
+    font-weight: 500;
+    margin-bottom: 20px;
 }
 
 #content {
@@ -26,6 +30,7 @@ h2, h3 {
     max-width: 600px;
     width: 100%;
     box-sizing: border-box;
+    border: 2px solid #000;
 }
 
 select {
@@ -33,6 +38,7 @@ select {
     padding: 10px;
     margin-bottom: 20px;
     font-size: 16px;
+    border: 1px solid #000;
 }
 
 .slider-container {
@@ -41,6 +47,7 @@ select {
 
 label {
     font-weight: bold;
+    color: #000;
 }
 
 input[type="range"] {
@@ -50,11 +57,12 @@ input[type="range"] {
 textarea {
     width: 100%;
     height: 100px;
+    border: 1px solid #000;
 }
 
 button {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #0000FF;
     color: white;
     border: none;
     border-radius: 5px;
@@ -63,22 +71,18 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #00008B;
 }
 
 .legend {
-    margin-top: 20px;
-    font-size: 14px;
+    font-size: 12px;
     color: #555;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    text-align: center;
+    text-align: left;
+    margin-top: 5px;
 }
 
 .legend p {
-    margin: 5px 0;
+    margin: 3px 0;
 }
 
 .slider-value {
