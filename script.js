@@ -79,6 +79,9 @@ function submitEvaluation() {
         feedback: feedback
     };
 
+    // Show loading spinner
+    document.getElementById('loading').style.display = 'block';
+
     fetch(CORS_PROXY + SUBMIT_DATA_URL, {
         method: "POST",
         headers: {
@@ -89,11 +92,37 @@ function submitEvaluation() {
     .then(response => response.text())
     .then(result => {
         console.log("Submission response:", result);
-        alert(result);
+        
+        // Hide loading spinner
+        document.getElementById('loading').style.display = 'none';
+        
+        // Show success message
+        const messageDiv = document.getElementById('message');
+        messageDiv.innerText = result;
+        messageDiv.style.backgroundColor = '#4CAF50'; // Success color
+        messageDiv.style.display = 'block';
+
+        // Hide message after 5 seconds
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 5000);
     })
     .catch(error => {
         console.error("Error submitting evaluation:", error);
-        alert("Error submitting evaluation: " + error.message);
+
+        // Hide loading spinner
+        document.getElementById('loading').style.display = 'none';
+        
+        // Show error message
+        const messageDiv = document.getElementById('message');
+        messageDiv.innerText = 'Error submitting evaluation: ' + error.message;
+        messageDiv.style.backgroundColor = '#FF0000'; // Error color
+        messageDiv.style.display = 'block';
+
+        // Hide message after 5 seconds
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 5000);
     });
 }
 
