@@ -1,6 +1,6 @@
 const CORS_PROXY = "https://comments.javajireh.org/";
-const STUDENT_FETCH_URL = "https://script.google.com/macros/s/AKfycbwmiR3zdSCKEwLzIB4XkmOTljYJwBTdWzIQY8Gh7BkKPKwSGbFidyMsX1rMr3Dr9ig1/exec";
-const SUBMIT_DATA_URL = "https://script.google.com/macros/s/AKfycbyheYAKhrojL4X_9PZlFMgjY_d95GWVGvZihABwgohuyD1JJzHD_hOzuxbmuAqL0C4h-g/exec"; 
+const STUDENT_FETCH_URL = "https://script.google.com/macros/s/AKfycbx3cin8FE2bnGTt7L4lc_nAjI8_MHTsO7h6HhWbqtiCn-BPTH0avHLHjMbiIlDvoaJV/exec"; // Updated with new URL
+const SUBMIT_DATA_URL = "https://script.google.com/macros/s/AKfycbyheYAKhrojL4X_9PZlFMgjY_d95GWVGvZihABwgohuyD1JJzHD_hOzuxbmuAqL0C4h-g/exec";
 
 // Fetch students from "New Student Probation" sheet
 function fetchStudents() {
