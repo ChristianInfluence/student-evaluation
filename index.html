@@ -14,46 +14,39 @@
 
     <div class="slider-container">
       <label for="academics">Academics (1-10): <span id="academicsValue" class="slider-value">5</span></label>
-      <input type="range" id="academics" min="1" max="10" value="5" oninput="updateValue('academics')">
-      <div class="legend">
-        <p>1 - Not Meeting Expectations</p>
-        <p>5 - Meets Expectations</p>
-        <p>10 - Exceeding Expectations</p>
-      </div><br>
+      <input type="range" id="academics" min="1" max="10" value="5" oninput="updateValue('academics')"><br><br>
 
       <label for="integration">Integration (1-10): <span id="integrationValue" class="slider-value">5</span></label>
-      <input type="range" id="integration" min="1" max="10" value="5" oninput="updateValue('integration')">
-      <div class="legend">
-        <p>1 - Not Meeting Expectations</p>
-        <p>5 - Meets Expectations</p>
-        <p>10 - Exceeding Expectations</p>
-      </div><br>
+      <input type="range" id="integration" min="1" max="10" value="5" oninput="updateValue('integration')"><br><br>
 
       <label for="behavior">Behavior (1-10): <span id="behaviorValue" class="slider-value">5</span></label>
-      <input type="range" id="behavior" min="1" max="10" value="5" oninput="updateValue('behavior')">
-      <div class="legend">
-        <p>1 - Not Meeting Expectations</p>
-        <p>5 - Meets Expectations</p>
-        <p>10 - Exceeding Expectations</p>
-      </div><br>
+      <input type="range" id="behavior" min="1" max="10" value="5" oninput="updateValue('behavior')"><br><br>
 
       <label for="attendance">Attendance (1-10): <span id="attendanceValue" class="slider-value">5</span></label>
-      <input type="range" id="attendance" min="1" max="10" value="5" oninput="updateValue('attendance')">
-      <div class="legend">
-        <p>1 - Not Meeting Expectations</p>
-        <p>5 - Meets Expectations</p>
-        <p>10 - Exceeding Expectations</p>
-      </div><br>
+      <input type="range" id="attendance" min="1" max="10" value="5" oninput="updateValue('attendance')"><br><br>
     </div>
 
     <label for="feedback">Teacher Feedback:</label><br>
     <textarea id="feedback"></textarea><br><br>
 
-    <button id="submitButton">Submit</button>
+    <button id="submitButton" onclick="submitEvaluation()">Submit</button>
+    <div id="loading" class="loading"></div>
+  </div>
+
+  <div class="legend">
+    <p><span class="legend-value" style="color: red;">1 - Not Meeting Expectations</span></p>
+    <p><span class="legend-value" style="color: orange;">2</span></p>
+    <p><span class="legend-value" style="color: orange;">3</span></p>
+    <p><span class="legend-value" style="color: darkgoldenrod;">4</span></p>
+    <p><span class="legend-value" style="color: darkgoldenrod;">5 - Meets Expectations</span></p>
+    <p><span class="legend-value" style="color: yellowgreen;">6</span></p>
+    <p><span class="legend-value" style="color: yellowgreen;">7</span></p>
+    <p><span class="legend-value" style="color: green;">8</span></p>
+    <p><span class="legend-value" style="color: green;">9</span></p>
+    <p><span class="legend-value" style="color: darkgreen;">10 - Exceeding Expectations</span></p>
   </div>
 
   <div id="message" class="message"></div>
-  <div id="loading" class="loading">Processing...</div>
 
   <script src="script.js"></script>
 
