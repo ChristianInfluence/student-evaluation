@@ -107,3 +107,19 @@ button:hover {
 .slider-value[data-value="10"] {
     color: darkgreen;
 }
+
+.message {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+}
+
+.loading {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #0000FF;
+    color: white;
+    display: none;
+}
