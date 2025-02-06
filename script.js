@@ -48,9 +48,12 @@ function fetchStudents() {
     });
 }
 
-// Update slider value display
+// Update slider value display with gradient color
 function updateValue(sliderId) {
-    document.getElementById(sliderId + 'Value').innerText = document.getElementById(sliderId).value;
+    const value = document.getElementById(sliderId).value;
+    const valueDisplay = document.getElementById(sliderId + 'Value');
+    valueDisplay.innerText = value;
+    valueDisplay.setAttribute('data-value', value);
 }
 
 // Submit evaluation data to "Probation Log 2025" sheet
