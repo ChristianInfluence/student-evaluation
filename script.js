@@ -1,6 +1,6 @@
 const CORS_PROXY = "https://comments.javajireh.org/";
 const STUDENT_FETCH_URL = "https://script.google.com/macros/s/AKfycbx3cin8FE2bnGTt7L4lc_nAjI8_MHTsO7h6HhWbqtiCn-BPTH0avHLHjMbiIlDvoaJV/exec";
-const SUBMIT_DATA_URL = "https://script.google.com/macros/s/AKfycbw5NlEaGl9Zs5MoENesNUJhz_uhbHQ5I5nUc3MHPUaxp1svFmNh6UeiBfNGhNbcXeJXeg/exec"; // Updated with new URL
+const SUBMIT_DATA_URL = "https://script.google.com/macros/s/AKfycbw5NlEaGl9Zs5MoENesNUJhz_uhbHQ5I5nUc3MHPUaxp1svFmNh6UeiBfNGhNbcXeJXeg/exec";
 
 // Fetch students from "New Student Probation" sheet
 function fetchStudents() {
@@ -19,7 +19,7 @@ function fetchStudents() {
             console.log("Fetched students:", studentNames); // Debugging
 
             let select = document.getElementById("studentSelect");
-            select.innerHTML = ""; // Clear old options
+            select.innerHTML = '<option value="" disabled selected>None selected</option>'; // Clear old options and set default
 
             if (studentNames.length === 0) {
                 let option = document.createElement("option");
@@ -46,6 +46,11 @@ function fetchStudents() {
         console.error("Error fetching student names:", error);
         alert("Error fetching student names: " + error.message);
     });
+}
+
+// Update slider value display
+function updateValue(sliderId) {
+    document.getElementById(sliderId + 'Value').innerText = document.getElementById(sliderId).value;
 }
 
 // Submit evaluation data to "Probation Log 2025" sheet
