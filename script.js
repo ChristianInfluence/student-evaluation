@@ -102,6 +102,18 @@ function submitEvaluation() {
         messageDiv.style.backgroundColor = '#4CAF50'; // Success color
         messageDiv.style.display = 'block';
 
+        // Reset the form after successful submission
+        document.getElementById("studentSelect").selectedIndex = 0;
+        document.getElementById("academics").value = 5;
+        document.getElementById("integration").value = 5;
+        document.getElementById("behavior").value = 5;
+        document.getElementById("attendance").value = 5;
+        document.getElementById("feedback").value = "";
+        updateValue('academics');
+        updateValue('integration');
+        updateValue('behavior');
+        updateValue('attendance');
+
         // Hide message after 5 seconds
         setTimeout(() => {
             messageDiv.style.display = 'none';
