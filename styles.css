@@ -17,6 +17,9 @@ h2, h3 {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 select {
@@ -55,4 +58,33 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+.legend {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.slider-value {
+    font-weight: bold;
+}
+
+.slider-value[data-value="1"] {
+    color: red;
+}
+.slider-value[data-value="2"], .slider-value[data-value="3"] {
+    color: orange;
+}
+.slider-value[data-value="4"], .slider-value[data-value="5"] {
+    color: yellow;
+}
+.slider-value[data-value="6"], .slider-value[data-value="7"] {
+    color: lightgreen;
+}
+.slider-value[data-value="8"], .slider-value[data-value="9"] {
+    color: green;
+}
+.slider-value[data-value="10"] {
+    color: darkgreen;
 }
