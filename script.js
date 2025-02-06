@@ -83,7 +83,10 @@ function submitEvaluation() {
         console.log("Submission response:", result);
         alert(result);
     })
-    .catch(error => console.error("Error submitting evaluation:", error));
+    .catch(error => {
+        console.error("Error submitting evaluation:", error);
+        alert("Error submitting evaluation: " + error.message);
+    });
 }
 
 // Run fetchStudents() when the page loads
