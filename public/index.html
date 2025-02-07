@@ -3,10 +3,14 @@
 <head>
   <title>Student Evaluation</title>
   <link rel="stylesheet" href="styles.css">
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 </head>
 <body>
 
-  <div id="content">
+  <div id="content" style="display:none;">
     <h2>Select a Student for Evaluation</h2>
     <select id="studentSelect">
       <option value="" disabled selected>None selected</option>
@@ -42,13 +46,15 @@
     <label for="feedback">Teacher Feedback:</label><br>
     <textarea id="feedback"></textarea><br><br>
 
-    <button id="submitButton" onclick="submitEvaluation()">Submit</button>
+    <button id="submitButton">Submit</button>
     <div id="loading" class="loading"></div>
   </div>
 
   <div id="message" class="message"></div>
+  <div id="login" style="display:block;">
+    <button id="loginButton">Login with Google</button>
+  </div>
 
   <script src="script.js"></script>
-
 </body>
 </html>
