@@ -1,6 +1,8 @@
 const CORS_PROXY = "https://comments.javajireh.org/";
 const STUDENT_FETCH_URL = "https://script.google.com/macros/s/AKfycbx3cin8FE2bnGTt7L4lc_nAjI8_MHTsO7h6HhWbqtiCn-BPTH0avHLHjMbiIlDvoaJV/exec";
-const SUBMIT_DATA_URL = "https://script.google.com/macros/s/AKfycbw5NlEaGl9Zs5MoENesNUJhz_uhbHQ5I5nUc3MHPUaxp1svFmNh6UeiBfNGhNbcXeJXeg/exec";
+const SUBMIT_DATA_URL = "https://script.google.com/macros/s/AKfycbyXpsGjiDzqSGtnwDFXC4ROKG1lMN03DFJiOTZmMYoRTZwSxnZXFv6ZIfnoNobNFN26eA/exec";
+
+let teacherEmail = "";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -22,8 +24,8 @@ const auth = firebase.auth();
 auth.onAuthStateChanged(user => {
   if (user) {
     // User is signed in.
-    const email = user.email;
-    const domain = email.split('@')[1];
+    teacherEmail = user.email;
+    const domain = teacherEmail.split('@')[1];
     if (domain === 'wvcs.org') {
       document.getElementById('content').style.display = 'block';
       document.getElementById('login').style.display = 'none';
@@ -115,6 +117,7 @@ function submitEvaluation() {
     }
 
     let data = {
+        email: teacherEmail,
         student: student,
         academics: academics,
         integration: integration,
