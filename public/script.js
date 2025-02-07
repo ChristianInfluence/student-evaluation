@@ -2,6 +2,50 @@ const CORS_PROXY = "https://comments.javajireh.org/";
 const STUDENT_FETCH_URL = "https://script.google.com/macros/s/AKfycbx3cin8FE2bnGTt7L4lc_nAjI8_MHTsO7h6HhWbqtiCn-BPTH0avHLHjMbiIlDvoaJV/exec";
 const SUBMIT_DATA_URL = "https://script.google.com/macros/s/AKfycbw5NlEaGl9Zs5MoENesNUJhz_uhbHQ5I5nUc3MHPUaxp1svFmNh6UeiBfNGhNbcXeJXeg/exec";
 
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDCNiTePPQhs4vj2-JDABiJDaLd-Rs4IPc",
+  authDomain: "student-probation.firebaseapp.com",
+  projectId: "student-probation",
+  storageBucket: "student-probation.firebasestorage.app",
+  messagingSenderId: "619429980328",
+  appId: "1:619429980328:web:a9ca96ad124c334730fa9d",
+  measurementId: "G-CBP9LPZQRW"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Firebase Authentication
+const auth = firebase.auth();
+
+auth.onAuthStateChanged(user => {
+  if (user) {
+    // User is signed in.
+    const email = user.email;
+    const domain = email.split('@')[1];
+    if (domain === 'wvcs.org') {
+      document.getElementById('content').style.display = 'block';
+      document.getElementById('login').style.display = 'none';
+      fetchStudents(); // Fetch students after successful login
+    } else {
+      auth.signOut();
+      alert('Unauthorized domain.');
+    }
+  } else {
+    // No user is signed in.
+    document.getElementById('content').style.display = 'none';
+    document.getElementById('login').style.display = 'block';
+  }
+});
+
+function login() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider).catch(error => {
+    console.error(error);
+  });
+}
+
 // Fetch students from "New Student Probation" sheet
 function fetchStudents() {
     fetch(CORS_PROXY + STUDENT_FETCH_URL)
@@ -138,8 +182,8 @@ function submitEvaluation() {
     });
 }
 
-// Run fetchStudents() when the page loads
-window.onload = fetchStudents;
+// Attach event listener to login button
+document.getElementById("loginButton").addEventListener("click", login);
 
 // Attach event listener to submit button
 document.getElementById("submitButton").addEventListener("click", submitEvaluation);
